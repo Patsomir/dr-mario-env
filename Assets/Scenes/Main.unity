@@ -849,7 +849,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 399.67, y: -47}
+  m_AnchoredPosition: {x: 400, y: -47}
   m_SizeDelta: {x: 769.25, y: 72.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1744260663
@@ -981,6 +981,7 @@ GameObject:
   - component: {fileID: 2094400686}
   - component: {fileID: 2094400685}
   - component: {fileID: 2094400687}
+  - component: {fileID: 2094400689}
   - component: {fileID: 2094400688}
   m_Layer: 0
   m_Name: GameController
@@ -1035,9 +1036,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f905c1a044dc2d047abe3cc955cd0fcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  port: 42011
+  port: 42001
   ip: 0.0.0.0
-  gameManager: {fileID: 120530219}
+  readBufferSize: 16
+  monitorComponent: {fileID: 2094400689}
+  controllerComponent: {fileID: 2094400689}
 --- !u!114 &2094400688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1054,6 +1057,20 @@ MonoBehaviour:
   disconnect: q
   connect: l
   quit: escape
+--- !u!114 &2094400689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094400684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4315085e2d445545b008016570d183a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 120530221}
+  remote: {fileID: 2094400687}
 --- !u!1001 &4048404143660040981
 PrefabInstance:
   m_ObjectHideFlags: 0

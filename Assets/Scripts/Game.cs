@@ -199,97 +199,9 @@ public class Game : MonoBehaviour
         return gameState.GetHeight();
     }
 
-    public string GetStateJSON()
+    public (int, int) GetPlayerPosition()
     {
-        StringBuilder result = new StringBuilder();
-        result.Append("{ ");
-        result.Append("\"board\": [");
-
-        GameSquare[,] squares = GetStateMatrix();
-        for (int row = 0; row < height ; ++row)
-        {
-            result.Append('[');
-            for (int col = 0; col < width; ++col)
-            {
-                result.Append('\"');
-                if (squares[row, col] == null)
-                {
-                    result.Append('E');
-                }
-                else
-                {
-                    switch (squares[row, col].color)
-                    {
-                        case Color.RED:
-                            result.Append('R');
-                            break;
-                        case Color.BLUE:
-                            result.Append('B');
-                            break;
-                        case Color.YELLOW:
-                            result.Append('Y');
-                            break;
-                    }
-                    switch (squares[row, col].type)
-                    {
-                        case Type.PILL:
-                            result.Append('P');
-                            switch (squares[row, col].joinedAt)
-                            {
-                                case JoinDirection.NONE:
-                                    result.Append('N');
-                                    break;
-                                case JoinDirection.LEFT:
-                                    result.Append('L');
-                                    break;
-                                case JoinDirection.RIGHT:
-                                    result.Append('R');
-                                    break;
-                                case JoinDirection.UP:
-                                    result.Append('U');
-                                    break;
-                                case JoinDirection.DOWN:
-                                    result.Append('D');
-                                    break;
-                            }
-                            break;
-                        case Type.VIRUS:
-                            result.Append('V');
-                            break;
-                    }
-                    
-                }
-                result.Append('\"');
-                if (col < width - 1)
-                {
-                    result.Append(", ");
-                }
-            }
-            result.Append(']');
-            if(row < height - 1)
-            {
-                result.Append(", ");
-            }
-        }
-        result.Append("], ");
-
-        result.Append(string.Format("\"position\": {{ \"row\": {0}, \"col\": {1} }}, ", currentPillRow, currentPillCol));
-        result.Append("\"condition\": \"");
-        switch(terminationState)
-        {
-            case TerminationState.ONGOING:
-                result.Append('O');
-                break;
-            case TerminationState.WIN:
-                result.Append('W');
-                break;
-            case TerminationState.LOSS:
-                result.Append('L');
-                break;
-        }
-        result.Append("\" }");
-
-        return result.ToString();
+        return (currentPillRow, currentPillCol);
     }
 }
 
